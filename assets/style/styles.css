@@ -611,9 +611,9 @@ body::before {
     transition: all 0.3s ease;
 }
 
-.info-item:last-child {
+/* .info-item:last-child {
     border-bottom: none;
-}
+} */
 
 .info-icon {
     width: 60px;
