@@ -1,0 +1,982 @@
+/* =========================================================
+   1. ROOT VARIABLES (СИСТЕМА)
+========================================================= */
+:root {
+    /* === COLORS === */
+    --color-bg-main: #F8EAC8;
+    --color-bg-card: #ffffff;
+
+    --color-text-main: #333A1A;
+    --color-text-accent: #A50C0A;
+    --color-text-muted: #9C7750;
+
+    --color-border: #E5CD9F;
+
+    /* === TYPOGRAPHY === */
+    --font-main: 'ALS FinlandiaScript', serif;
+    --font-title: 'Cormorant Garamond', serif;
+    --font-ui: 'Montserrat', sans-serif;
+
+    /* === SPACING === */
+    --space-xs: 5px;
+    --space-sm: 10px;
+    --space-md: 20px;
+    --space-lg: 40px;
+    --space-xl: 80px;
+
+    /* === BORDER RADIUS === */
+    --radius-sm: 10px;
+    --radius-md: 15px;
+    --radius-lg: 20px;
+    --radius-round: 50px;
+
+    /* === SHADOWS === */
+    --shadow-soft: 0 5px 15px rgba(0,0,0,0.05);
+    --shadow-card: 0 10px 40px rgba(51, 58, 26, 0.05);
+
+    /* === ANIMATION === */
+    --anim-fast: 0.3s ease;
+    --anim-slow: 0.5s ease;
+}
+
+/* =========================================================
+   2. BASE
+========================================================= */
+
+body {
+    position: relative;
+    background-color: var(--color-bg-main);
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Создаем слой с редкими сердечками */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Используем SVG с большим пустым пространством вокруг сердечка */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 100 100'%3E%3Cpath d='M50 69.7l-2.4-2.2C39 60.2 33.7 55.4 33.7 49.5 33.7 44.7 37.4 41 42.2 41c2.7 0 5.3 1.3 7.8 3.3 2.5-2 5.1-3.3 7.8-3.3 4.8 0 8.5 3.7 8.5 8.5 0 5.9-5.3 10.7-13.9 18l-2.4 2.2z' fill='%23E1C58F' fill-opacity='0.3'/%3E%3C/svg%3E");
+    
+    background-repeat: repeat;
+    background-size: 250px 250px; /* Увеличили размер сетки, чтобы они были редко */
+    z-index: -1;
+    pointer-events: none;
+    
+    /* Комбинируем движение и пульсацию */
+    animation: 
+        moveFloating 40s linear infinite, 
+        pulseHearts 4s ease-in-out infinite;
+}
+
+/* Анимация плавного плавания */
+@keyframes moveFloating {
+    0% { background-position: 0 0; }
+    100% { background-position: 250px 500px; }
+}
+
+/* Анимация пульсации (увеличение и прозрачность) */
+@keyframes pulseHearts {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: scale(1.1); /* Легкое увеличение всей сетки */
+        opacity: 1; /* Становятся чуть ярче */
+    }
+}
+
+/* Чтобы на мобильных не мельтешило, замедляем */
+@media (max-width: 768px) {
+    body::before {
+        background-size: 200px 200px;
+        animation: 
+            moveFloating 30s linear infinite, 
+            pulseHearts 5s ease-in-out infinite;
+    }
+}
+/* =========================================================
+   3. HERO SECTION (ОПТИМИЗИРОВАНО ДЛЯ ПК)
+========================================================= */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    /* Устанавливаем белый фон, так как фото на белом фоне */
+    background-color: #FFFFFF !important; 
+}
+
+.hero-section img {
+    width: 100%;
+    height: 99.9%;
+    /* На ПК фото будет вписано целиком без обрезок */
+    object-fit: contain; 
+    /* Прижимаем к низу, чтобы градиент ложился на ноги/край фото */
+    object-position: bottom center; 
+    position: relative;
+    z-index: 1;
+    background-color: #ffffff !important;
+}
+
+/* Градиент теперь будет мягко уводить белый фон фото в ваш бежевый цвет сайта */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 30%; /* Уменьшили высоту, чтобы не перекрывать лицо на ПК */
+    background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 0) 0%, 
+        #ffffff 100%
+    );
+    z-index: 2;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%; /* Подняли текст чуть выше центра, чтобы не перекрывать людей */
+    left: 20%;
+    right: 80%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+    z-index: 5;
+    text-align: center;
+    pointer-events: none;
+    animation: fadeInTitle 2s ease-out;
+    border-radius: 200px;
+}
+
+/* Адаптив для мобильных устройств */
+@media (max-width: 768px) {
+    .hero-section img {
+        /* На мобилках возвращаем cover, чтобы фото было на весь экран */
+        object-fit: cover;
+        object-position: center;
+    }
+    .hero-section::after {
+        height: 50%; /* На мобилках градиент можно сделать выше */
+    }
+    .hero-content h1{
+        width: 100% !important;
+        margin: auto;
+        background-color: #0000001f;
+        color: white !important;
+    }
+    .hero-content p{
+        width: 100% !important;
+        margin: auto;
+        background-color: #0000001f;
+        color: white !important;
+        font-size: clamp(1.5rem, 3vw, 1.7rem) !important;
+        padding: 5px 50px !important;
+    }
+    .hero-content{
+        top: 65%;
+        bottom: 35%;
+        left: 50%;
+        right: 50%;
+    }
+}
+
+.hero-content h1 {
+    font-family: var(--font-title);
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    line-height: 1.1;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    margin: 0;
+    width: fit-content;
+    padding: 10px 20px;
+}
+
+.hero-section p {
+    font-family: var(--font-title);
+    font-size: clamp(2rem, 5vw, 2rem);
+    margin: auto;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    line-height: 1.1;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    /* background-color: #0000001f; */
+    width: max-content;
+    padding: 10px 20px;
+}
+
+/* =========================================================
+   4. INFINITE SLIDER
+========================================================= */
+.infinite-slider {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+.slider-track {
+    display: flex;
+    width: max-content;
+    animation: scrollInfinite 30s linear infinite;
+}
+
+.slider-track img {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+    background-color: var(--color-bg-card);
+    border: solid 5px var(--color-bg-card);
+    box-shadow: var(--shadow-soft);
+}
+
+/* =========================================================
+   5. INVITATION CARD + TIMER
+========================================================= */
+.invitation-section {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 60px;
+    background-color: transparent !important; /* Твой #F8EAC8 */
+}
+
+.invitation-section::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, #FFFFFF, var(--color-bg-main));
+    pointer-events: none;
+}
+
+.invitation-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    padding: var(--space-xl) var(--space-lg);
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05); 
+    max-width: 850px;
+    margin: auto ; 
+    position: relative;
+    border-radius: var(--radius-sm);
+    z-index: 15;
+    backdrop-filter: blur(5px);
+}
+
+.invitation-card h1 {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+    margin-bottom: var(--space-md);
+}
+
+.invitation-card::before {
+    content: '';
+    position: absolute;
+    top: 20px; left: 20px; right: 20px; bottom: 20px;
+    border: 1px solid var(--color-border);
+    opacity: 0.5;
+}
+
+.date-text {
+    font-size: 2.2rem;
+    color: var(--color-text-accent);
+    margin: var(--space-md) 0;
+        font-family: var(--font-main);
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: var(--space-lg) 0;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdown-item span {
+    font-size: 4rem;
+    font-weight: bold;
+    font-family: var(--font-main);
+    color: var(--color-text-main);
+}
+
+.countdown-item label {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: var(--font-ui) !important;
+}
+/* =========================================================
+   6. RSVP
+========================================================= */
+.rsvp-card {
+    background: var(--color-bg-card);
+    max-width: 850px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-lg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    text-align: center;
+}
+
+.rsvp-title {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+}
+
+.form-control-custom {
+    width: 100%;
+    padding: 15px 5px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    outline: none;
+    transition: border-color var(--anim-fast);
+}
+
+.form-control-custom:focus {
+    border-bottom: 1px solid var(--color-text-accent);
+}
+
+.btn-submit {
+    margin-top: var(--space-md);
+    background-color: var(--color-text-main);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: var(--radius-round);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all var(--anim-fast);
+    cursor: pointer;
+}
+
+.rsvp-section {
+    padding: var(--space-lg) 0;
+    font-family: var(--font-ui);
+    background-color: transparent !important; /* Твой #F8EAC8 */
+}
+
+.form-control-custom {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    background: transparent;
+    padding: 10px 0;
+    outline: none;
+}
+
+.form-control-custom::placeholder {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #aaa;
+}
+
+/* =========================================================
+   7. MAP
+========================================================= */
+.map-container-styled {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    padding: var(--space-xl) var(--space-lg);
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05); 
+    max-width: 850px;
+    margin: auto ; 
+    position: relative;
+    border-radius: var(--radius-sm);
+    z-index: 15;
+    backdrop-filter: blur(5px);
+}
+
+.map-title {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+}
+.map-subtitle {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+}
+
+.map-section {
+    padding: var(--space-lg) 0;
+    background: transparent !important;
+}
+
+.dg-widget-responsive {
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: var(--shadow-card) !important;
+}
+
+/* =========================================================
+   8. MUSIC PLAYER
+========================================================= */
+.music-player-wrapper {
+    width: 100%;
+    height: 60px; 
+    margin-top: -60px;
+    position: relative;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.music-player-inline {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.music-player-inline.sticky {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    left: auto;
+    transform: none; 
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 8px 15px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    z-index: 1000;
+    animation: slideInRight 0.5s ease;
+}
+
+.music-player-inline .player-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.music-player-inline .disk-wrapper {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+}
+
+.disk-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: spin 4s linear infinite;
+}
+
+.music-player-inline .track-name {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #333 !important;
+    transition: color 0.3s;
+}
+
+.music-player-inline.sticky .track-name {
+    color: #333;
+}
+
+.music-player-inline .play-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s ease;
+}
+
+.music-player-inline .play-btn:active {
+    transform: scale(0.9);
+}
+
+.music-player-inline .play-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    opacity: 0.9;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
+}
+
+.music-player-inline .play-btn:hover svg {
+    opacity: 1;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* =========================================================
+   9. ANIMATIONS
+========================================================= */
+@keyframes scrollInfinite {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@keyframes fadeInTitle {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* =========================================================
+   10. RESPONSIVE
+========================================================= */
+@media (max-width: 768px) {
+    .infinite-slider { margin-top: 0; }
+
+    .slider-track img {
+        width: 150px;
+        height: 220px;
+    }
+
+    .countdown-item span {
+        font-size: 2.5rem;
+    }
+
+    .countdown-container {
+        gap: 10px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .hero-section {
+        position: relative;
+        width: 100%;
+        height: 120vh;
+        overflow: hidden;
+        top: 10%;
+        background-color: var(--color-bg-main);
+    }
+}
+
+/* =========================================================
+    11. INFO SECTION
+========================================================= */
+
+.info-section {
+    background-color: #FFFFFF;
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.info-item {
+    flex: 1 1 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-icon img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.info-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.info-title{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #2c2c2c;
+    text-align: center;
+}
+
+.info-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .info-item {
+        border-bottom: none;
+        border-right: 1px solid #f0f0f0;
+    }
+    .info-item:nth-child(3n), .info-item:last-child {
+        border-right: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-item {
+        flex: 1 1 100%;
+        padding: 20px;
+    }
+    .info-value {
+        font-size: 1.4rem;
+    }
+}
+
+/* =========================================================
+    12. DRESS CODE SECTION
+========================================================= */
+.dress-section {
+    padding: 0;
+    background-color: var(--color-bg-main);
+    text-align: center;
+    margin-bottom: 100px;
+    background-color: #ffffff;
+}
+
+.dress-card {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 40px;
+    background: #fff;
+}
+
+.dress-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #2c2c2c;
+}
+
+.dress-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #8a8a8a;
+    margin-bottom: 30px;
+}
+
+.dress-description {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    font-style: italic;
+    color: #4a4a4a;
+    margin-bottom: 40px;
+}
+
+.color-palette {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.color-circle {
+    width: 50px;       /* Укажите нужный размер круга */
+    height: 50px;
+    overflow: hidden;  /* Чтобы картинка не выходила за границы круга */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.color-circle img {
+    width: 100%;       /* Растягивает иконку на весь круг */
+    height: 100%;
+    object-fit: cover; /* Сохраняет пропорции картинки */
+}
+
+.dress-note {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 480px) {
+    .dress-card {
+        padding: 30px 20px;
+    }
+    .color-circle {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+
+
+/* =========================================================
+    13. ABOUT SECTION
+========================================================= */
+
+.about-section {
+    background-color: #FFFFFF;
+    position: relative;
+    padding: 100px 0;
+    line-height: 1.6;
+}
+
+.about-content {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.quote-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    color: #E5CD9F;
+    line-height: 1;
+    margin-bottom: -20px;
+}
+
+.about-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: #4a4a4a;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    /* ПРИНУДИТЕЛЬНЫЙ ПЕРЕНОС */
+    white-space: normal !important; 
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important; 
+    display: block;
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .about-text {
+        font-size: 1.1rem;
+        text-indent: 0;
+        padding: 0 10px;
+    }
+}
+
+.about-signature {
+    margin-top: 60px;
+    text-align: right;
+}
+
+.signature-header {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+    margin-bottom: 15px;
+}
+
+.signature-list {
+    list-style: none;
+    padding: 0;
+}
+
+.signature-list li {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #2c2c2c;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .about-signature {
+        text-align: center;
+    }
+}
+
+
+/* =========================================================
+    14. LANG SWITCHER
+
+    /* Кнопка переключения языка */
+.lang-switch {
+    position: fixed;
+    top: 20px;
+    left: 20px; /* С противоположной стороны от плеера */
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 5px 12px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.lang-btn.active {
+    color: #2c2c2c; /* Активный язык темнее */
+    font-weight: 700;
+}
+
+.lang-divider {
+    color: #ddd;
+    font-size: 10px;
+    user-select: none;
+}
+
+/* Эффект при наведении */
+.lang-btn:hover:not(.active) {
+    color: #666;
+}
+
+/* =========================================================
+    15. THANK YOU SECTION
+========================================================= */
+
+.thankyou-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    /* Устанавливаем белый фон, так как фото на белом фоне */
+    background-color: #FFFFFF !important; 
+}
+
+.thankyou-section img {
+    
+    height: 110%;
+    object-fit: contain; 
+    object-position: bottom center; 
+    position: relative;
+    z-index: 1;
+}
+
+/* Градиент теперь будет мягко уводить белый фон фото в ваш бежевый цвет сайта */
+.thankyou-section::after {
+    content: '';
+    position: absolute;
+    top: -1x;
+    left: 0;
+    width: 100%;
+    height: 90% !important; /* Уменьшили высоту, чтобы не перекрывать лицо на ПК */
+    background: linear-gradient(to top,
+        rgba(255, 255, 255, 0) 70%,
+        #F8EAC8 100%
+    );
+    z-index: 3;
+}
+
+.thankyou-content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: 5;
+    text-align: center;
+    pointer-events: none;
+}
+
+/* Адаптив для мобильных устройств */
+@media (max-width: 768px) {
+    .thankyou-section img {
+        /* На мобилках возвращаем cover, чтобы фото было на весь экран */
+        object-fit: cover;
+        object-position: center, bottom;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+    }
+    .thankyou-section::after {
+        
+    }
+    .thankyou-content {
+        position: absolute;
+        top: 70%;
+        left: 30%;
+        
+    }
+    .thankyou-content h1{
+        color: var(--color-bg-main) !important;
+        font-size: 0.9rem !important;
+    }
+    .thankyou-section{
+        background-color: var(--color-bg-main) !important;
+        height: 100%;
+    }
+}
+
+.thankyou-content h1 {
+    font-family: var(--font-title);
+    font-size: clamp(2.2rem, 8vw, 3rem);
+    color: var(--color-text-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    line-height: 1.1;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    margin: 0;
+    animation: fadeInTitle 2s ease-out;
+}

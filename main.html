@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style/styles.css">
+    <script src="https://unpkg.com/imask"></script>
+</head>
+<body>
+
+    <div class="lang-switch">
+        <button class="lang-btn active" data-lang="ru">RU</button>
+        <span class="lang-divider">|</span>
+        <button class="lang-btn" data-lang="kz">KZ</button>
+    </div>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1><strong>YASMIN'S<br>QYZ UZATU</strong></h1>
+            <p data-ru="Хозяева торжества" data-kz="Той иелері">Хозяева торжества</p>
+            <p>Досжан & Малика</p>
+        </div>
+        
+        <img src="./assets/img/img3.png" alt="">
+    </section>
+
+
+    <section>
+        <div class="music-player-wrapper">
+            <div class="music-player-inline" id="musicPlayer">
+                <div class="player-content">
+                    <div class="disk-wrapper">
+                        <img src="./assets/img/kid2.jpg" alt="Disk" id="diskImg">
+                    </div>
+                    <span class="track-name" data-ru="Включить музыку" data-kz="Музыканы қосу">Включить музыку</span>
+                    <button class="play-btn" id="playBtn">
+                        <svg id="playIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.8906 12.846L8.85937 18.5742C8.21484 18.9414 7.41797 18.4727 7.41797 17.7266V6.27344C7.41797 5.52734 8.21484 5.05859 8.85937 5.42578L18.8906 11.154C19.5352 11.5211 19.5352 12.4789 18.8906 12.846Z" fill="currentColor"/>
+                        </svg>
+                        <svg id="pauseIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+                            <rect x="7" y="5" width="3" height="14" rx="1.5" fill="currentColor"/>
+                            <rect x="14" y="5" width="3" height="14" rx="1.5" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+                <audio id="mainAudio" loop>
+                    <source src="./assets/audio/music.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+    </section>
+ 
+    <section class="infinite-slider">
+        <div class="slider-track">
+            <img src="./assets/img/kid1.JPG" alt=""><img src="./assets/img/kid2.JPG" alt=""><img src="./assets/img/kid3.JPG" alt=""><img src="./assets/img/kid4.JPG" alt=""><img src="./assets/img/kid5.JPG" alt=""><img src="./assets/img/kid6.JPG" alt=""><img src="./assets/img/kid7.JPG" alt=""><img src="./assets/img/kid8.JPG" alt=""><img src="./assets/img/kid9.JPG" alt=""><img src="./assets/img/kid10.JPG" alt=""><img src="./assets/img/kid11.JPG" alt=""><img src="./assets/img/kid12.JPG" alt=""><img src="./assets/img/kid13.JPG" alt="">
+            <img src="./assets/img/kid1.JPG" alt=""><img src="./assets/img/kid2.JPG" alt=""><img src="./assets/img/kid3.JPG" alt=""><img src="./assets/img/kid4.JPG" alt=""><img src="./assets/img/kid5.JPG" alt=""><img src="./assets/img/kid6.JPG" alt=""><img src="./assets/img/kid7.JPG" alt=""><img src="./assets/img/kid8.JPG" alt=""><img src="./assets/img/kid9.JPG" alt=""><img src="./assets/img/kid10.JPG" alt=""><img src="./assets/img/kid11.JPG" alt=""><img src="./assets/img/kid12.JPG" alt=""><img src="./assets/img/kid13.JPG" alt="">
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="quote-icon">“</div>
+                <p class="about-text" 
+                    data-ru="Сейчас вы пролистали детские фотографии Ясмин — её первые шаги, искренние улыбки и тёплые моменты, с которых началась её история. Сегодня для нашей семьи особенный и трепетный, но в то же время светлый и радостный день — мы провожаем Ясмин из родного дома в новую, супружескую жизнь."
+                    data-kz="Сіз жаңа ғана Ясминнің балалық шағындағы суреттерін — оның алғашқы қадамдары мен мөлдір күлкісін, тарихы басталған ең ыстық сәттерін тамашаладыңыздар. Бүгін отбасымыз үшін ерекше тебіреніске толы, сонымен бірге жарқын да қуанышты күн — біз Ясминді туған ұясынан жаңа өмірге, қиясына қондырып шығарып салмақпыз.">
+                        Сейчас вы пролистали детские фотографии Ясмин — её первые шаги, искренние улыбки и тёплые моменты, с которых началась её история. Сегодня для нашей семьи особенный и трепетный, но в то же время светлый и радостный день — мы провожаем Ясмин из родного дома в новую, супружескую жизнь.
+                </p>
+
+                <p class="about-text" 
+                    data-ru="Это не просто прощание — это красивый шаг в новую главу, с благодарностью за прошлое и радостным ожиданием будущего. И нам очень важно, чтобы вы были рядом в этот день и разделили с нами эти искренние эмоции и счастье момента."
+                    data-kz="Бұл жай ғана қоштасу емес — бұл өткенге алғыс айтып, болашаққа үмітпен қадам басатын өмірдің жаңа парағы. Осынау ақ тілекті сәтте қасымызда болып, қуанышымызды бірге бөлісулеріңіз біз үшін өте маңызды.">
+                        Это не просто прощание — это красивый шаг в новую главу, с благодарностью за прошлое и радостным ожиданием будущего. И нам очень важно, чтобы вы были рядом в этот день и разделили с нами эти искренние эмоции и счастье момента.
+                </p>
+                
+                <!-- <div class="about-signature">
+                    <p class="signature-header">С уважением и любовью:</p>
+                    <ul class="signature-list">
+                        <li>Семья</li>
+                    </ul>
+                </div> -->
+            </div>
+        </div> 
+    </section>
+
+    <section class="info-section">
+        <div class="container">
+            <h2 class="info-title" data-ru="Детали мероприятия" data-kz="Іс-шара мәліметтері">Детали мероприятия</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon"><img src="./assets/img/day.png" alt="Дата"></div>
+                    <div class="info-content">
+                        <p class="info-label" data-ru="Дата церемонии" data-kz="Рәсім күні">Дата церемонии</p>
+                        <p class="info-value">21 Июня 2026</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><img src="./assets/img/location.png" alt="Место"></div>
+                    <div class="info-content">
+                        <p class="info-label" data-ru="Место проведения" data-kz="Өтетін орны">Место проведения</p>
+                        <p class="info-value">ресторан «Saukele»,<br> ул. Аэропортная, 28а</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><img src="./assets/img/guests.png" alt="Сбор"></div>
+                    <div class="info-content">
+                        <p class="info-label" data-ru="Сбор гостей" data-kz="Қонақтардың жиналуы">Сбор гостей</p>
+                        <p class="info-value">16:00</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><img src="./assets/img/time.png" alt="Начало"></div>
+                    <div class="info-content">
+                        <p class="info-label" data-ru="Начало церемонии" data-kz="Рәсімнің басталуы">Начало церемонии</p>
+                        <p class="info-value">17:00</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><img src="./assets/img/car.png" alt="Окончание"></div>
+                    <div class="info-content">
+                        <p class="info-label" data-ru="Окончание вечера" data-kz="Кештің аяқталуы">Окончание вечера</p>
+                        <p class="info-value">22:00 <br><small data-ru="(но, возможно, праздник продлится)" data-kz="(бірақ, бәлкім, мереке жалғасады)">(но, возможно, праздник продлится)</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dress-section">
+        <div class="container">
+            <div class="dress-card">
+                <h2 class="dress-title" data-ru="Дресс-код" data-kz="Дресс-код">Дресс-код</h2>
+                <p class="dress-subtitle">Elegant / Праздничный стиль</p>
+                <div class="dress-description" data-ru="Будем рады видеть вас в красивых образах и с хорошим настроением" data-kz="Сіздерді әдемі бейнеде және көтеріңкі көңіл-күймен көруге қуаныштымыз">
+                    Будем рады видеть вас в красивых образах <br> и с хорошим настроением
+                </div>
+                <div class="color-palette">
+                    <div class="color-circle">
+                        <img src="./assets/img/blazer.png" alt="">
+                    </div>
+                    
+                    <div class="color-circle">
+                        <img src="./assets/img/shoemale.png" alt="">
+                    </div>
+
+                    <div class="color-circle">
+                        <img src="./assets/img/bow-tie.png" alt="">
+                    </div>
+                    
+                    <div class="color-circle">
+                        <img src="./assets/img/dress.png" alt="">
+                    </div>
+                    
+                    <div class="color-circle">
+                        <img src="./assets/img/shoefemale.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="invitation-section">
+        <div class="container">
+            <div class="invitation-card">
+                <h1>QYZ UZATU</h1>
+                <div class="date-text">21 Июня 2026</div>
+                <div class="countdown-container">
+                    <div class="countdown-item"><span id="days">00</span><label>дней</label></div>
+                    <div class="countdown-item"><span id="hours">00</span><label>часов</label></div>
+                    <div class="countdown-item"><span id="minutes">00</span><label>минут</label></div>
+                    <div class="countdown-item"><span id="seconds">00</span><label>секунд</label></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="rsvp-section">
+        <div class="container">
+            <div class="rsvp-card">
+                <h2 class="rsvp-title" data-ru="Регистрация гостя" data-kz="Қонақтарды тіркеу">Регистрация гостя</h2>
+                <form id="weddingForm" class="rsvp-form">
+                    <div class="mb-4">
+                        <input type="text" class="form-control-custom" id="guestName" 
+                               placeholder="Ваше Имя и Имя Партнера" 
+                               data-ru-ph="Ваше Имя и Имя Партнера" 
+                               data-kz-ph="Атыңыз және жұбыңыздың аты" required>
+                    </div>
+                    <div class="mb-4">
+                        <input type="number" class="form-control-custom" id="guestCount" 
+                               placeholder="Сколько человек придет?" 
+                               data-ru-ph="Сколько человек придет?" 
+                               data-kz-ph="Қанша адам келесіздер?" min="1" max="10" required>
+                    </div>
+                    <div class="mb-4">
+                        <input type="tel" class="form-control-custom" id="guestPhone" placeholder="+7 (___) ___-__-__" required>
+                    </div>
+                    <button type="submit" class="btn-submit" data-ru="Отправить ответ" data-kz="Жауапты жіберу">Отправить ответ</button>
+                    <div id="formMessage" class="mt-3" style="display:none; color: var(--color-dark);"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container-styled">
+                <h2 class="map-title" data-ru="Место проведения" data-kz="Өтетін орны">Место проведения</h2>
+                <p class="map-subtitle">Saukele, банкетный зал</p>
+                <div class="dg-widget-responsive">
+                    <script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js"></script>
+                    <script charset="utf-8">
+                        new DGWidgetLoader({"width":"100%","height":450,"borderColor":"#E5CD9F","pos":{"lat":43.30470973149355,"lon":77.05123901367189,"zoom":16},"opt":{"city":"almaty"},"org":[{"id":"70000001060098350"}]});
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="thankyou-section">
+        <div class="thankyou-content">
+            <h1 data-ru="Ждем вас" data-kz="Сіздерді">Ждем вас</h1>
+            <h1 data-ru="с нетерпением!" data-kz="асыға күтеміз!">с нетерпением!</h1>
+        </div>
+        
+        <img src="./assets/img/img4.png" alt="">
+    </section>
+
+    <script>
+        const targetDate = new Date(2026, 5, 21, 17, 0, 0).getTime();
+    
+        function getWord(number, words) {
+            return words[(number % 100 > 4 && number % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(number % 10 < 5) ? number % 10 : 5]];
+        }
+    
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+    
+            if (distance < 0) {
+                document.querySelector(".countdown-container").innerHTML = "<h3>Событие началось!</h3>";
+                return;
+            }
+    
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+    
+            document.querySelector(".countdown-item:nth-child(1) label").innerText = getWord(days, ['день', 'дня', 'дней']);
+            document.querySelector(".countdown-item:nth-child(2) label").innerText = getWord(hours, ['час', 'часа', 'часов']);
+            document.querySelector(".countdown-item:nth-child(3) label").innerText = getWord(minutes, ['минута', 'минуты', 'минут']);
+            document.querySelector(".countdown-item:nth-child(4) label").innerText = getWord(seconds, ['секунда', 'секунды', 'секунд']);
+        };
+    
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneElement = document.getElementById('guestPhone');
+            const maskOptions = {
+                mask: '+{7} (000) 000-00-00',
+                lazy: false 
+            };
+            const mask = IMask(phoneElement, maskOptions);
+        });
+    </script>
+
+    <script>
+        document.getElementById('weddingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const token = "8637725900:AAHlW9VsiGZnVfQqtUhV1iAyKUCdvKI34zQ";
+            const chatId = "850251125";
+            
+            const name = document.getElementById('guestName').value;
+            const count = document.getElementById('guestCount').value;
+            const phone = document.getElementById('guestPhone').value;
+            
+            const message = `🔔 *Новый ответ!*\n👤 *Имя:* ${name}\n👥 *Гостей:* ${count}\n📞 *Телефон:* ${phone}`;
+            const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
+            
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        form.style.transition = 'opacity 0.5s ease';
+                        form.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            form.style.display = 'none';
+                            const msg = document.getElementById('formMessage');
+                            msg.style.display = 'block';
+                            msg.innerHTML = "<h3>Спасибо! ❤️</h3><p>Ваш ответ успешно отправлен.</p>";
+                        }, 500);
+                    } else {
+                        alert("Ошибка. Попробуйте еще раз.");
+                    }
+                })
+                .catch(error => {
+                    alert("Ошибка соединения.");
+                });
+        });
+    </script>
+
+    <script>
+        const audio = document.getElementById('mainAudio');
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        const disk = document.querySelector('.disk-wrapper');
+        const player = document.getElementById('musicPlayer');
+
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+                disk.style.animationPlayState = 'running';
+            } else {
+                audio.pause();
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+                disk.style.animationPlayState = 'paused';
+            }
+        });
+    </script>
+
+<script>
+    window.addEventListener('scroll', function() {
+        const player = document.getElementById('musicPlayer');
+        const trackName = player.querySelector('.track-name');
+        const trigger = window.innerHeight * 0.5;
+
+        if (window.scrollY > trigger) {
+            player.classList.add('sticky');
+            if(trackName) trackName.style.color = "#333";
+        } else {
+            player.classList.remove('sticky');
+            if(trackName) trackName.style.color = "white";
+        }
+    });
+</script>
+
+<script>
+            window.addEventListener('scroll', function() {
+            const player = document.getElementById('musicPlayer');
+            const trigger = window.innerHeight * 0.9; 
+
+            if (window.scrollY > trigger) {
+                if (!player.classList.contains('sticky')) {
+                    player.classList.add('sticky');
+                }
+            } else {
+                player.classList.remove('sticky');
+            }
+        });
+</script>
+
+<script>
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        // Убираем активный класс у всех и даем нажатой
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        const lang = this.getAttribute('data-lang');
+
+        // Находим все элементы с атрибутами перевода
+        document.querySelectorAll('[data-ru]').forEach(el => {
+            if (lang === 'kz') {
+                el.textContent = el.getAttribute('data-kz');
+            } else {
+                el.textContent = el.getAttribute('data-ru');
+            }
+        });
+        
+        // Если нужно менять плейсхолдеры в инпутах
+        document.querySelectorAll('input[data-ru-ph]').forEach(input => {
+            if (lang === 'kz') {
+                input.placeholder = input.getAttribute('data-kz-ph');
+            } else {
+                input.placeholder = input.getAttribute('data-ru-ph');
+            }
+        });
+    });
+});
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
